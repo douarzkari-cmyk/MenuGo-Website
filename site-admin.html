@@ -194,9 +194,9 @@
       statusEl.textContent = '✓ تم الحفظ — التغييرات بانو فالموقع';
     }catch(e){
       console.error(e);
-      statusEl.textContent = '✕ خطأ فالحفظ، تأكد من الاتصال بالأنترنت';
+      statusEl.textContent = '✕ خطأ: ' + (e && e.message ? e.message : e);
     }
-    setTimeout(()=>{ statusEl.textContent=''; }, 4000);
+    setTimeout(()=>{ statusEl.textContent=''; }, 20000);
   }
 </script>
 </body>
