@@ -136,9 +136,9 @@
 
   async function init(){
     try{
-      const allSnap = await db.collection('site').get({ source: 'server' });
+      const allSnap = await db.collection('shops').get({ source: 'server' });
       let data = null;
-      allSnap.forEach(d=>{ if(d.id === 'landing') data = d.data(); });
+      allSnap.forEach(d=>{ if(d.id === '_site-landing') data = d.data(); });
       if(data){
         document.getElementById('f_eyebrow').value = data.heroEyebrow || '';
         document.getElementById('f_title').value = data.heroTitle || '';
@@ -190,7 +190,7 @@
       gallery: galleryItems.filter(g => g.url)
     };
     try{
-      await db.collection('site').doc('landing').set(payload, { merge: true });
+      await db.collection('shops').doc('_site-landing').set(payload, { merge: true });
       statusEl.textContent = '✓ تم الحفظ — التغييرات بانو فالموقع';
     }catch(e){
       console.error(e);

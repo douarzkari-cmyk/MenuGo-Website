@@ -365,9 +365,9 @@
 
     (async function loadSiteContent(){
       try{
-        const allSnap = await db.collection('site').get({ source: 'server' });
+        const allSnap = await db.collection('shops').get({ source: 'server' });
         let data = null;
-        allSnap.forEach(d=>{ if(d.id === 'landing') data = d.data(); });
+        allSnap.forEach(d=>{ if(d.id === '_site-landing') data = d.data(); });
         if(!data) return;
 
         if(data.heroEyebrow) document.getElementById('heroEyebrow').textContent = data.heroEyebrow;
