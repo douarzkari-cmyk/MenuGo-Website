@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenuGo — Digital Business Solutions | حلول رقمية متكاملة للمقاولات</title>
+<meta name="description" content="MenuGo: منيو رقمي، Business Kit، مواقع إلكترونية، تصميم وطباعة — كل ما يحتاجه محلك من مكان واحد.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0e; --bg-2:#141416; --panel:#17171a;
+    --gold:#c89b3c; --gold-light:#e8c877; --ivory:#f4efe4;
+    --muted:#9a9488; --line: rgba(232,200,119,0.16);
+    --shadow: 0 30px 70px -30px rgba(0,0,0,0.6);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ivory); font-family:'Tajawal',sans-serif; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.display{font-family:'Amiri', serif;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  section{max-width:1080px; margin:0 auto; padding:80px 22px;}
+
+  .zellige-line{
+    height:22px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='22' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23c89b3c' stroke-width='1.3'%3E%3Cpath d='M0 14 L14 0 L28 14 L14 28 Z'/%3E%3Cpath d='M28 14 L42 0 L56 14 L42 28 Z'/%3E%3Ccircle cx='14' cy='14' r='2.6'/%3E%3Ccircle cx='42' cy='14' r='2.6'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-size:52px 22px; background-position:center; opacity:.55;
+  }
+
+  /* ===== NAV ===== */
+  nav{position:sticky; top:0; z-index:50; background:rgba(12,12,14,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:16px 22px;}
+  nav .inner{max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;}
+  nav .brand{display:flex; align-items:center; gap:10px;}
+  nav .mark{
+    width:38px; height:38px; border-radius:10px; background:linear-gradient(160deg,#1a1a1c,#0c0c0e);
+    border:1.5px solid var(--gold); color:var(--gold-light); font-family:'Amiri',serif; font-weight:700; font-size:19px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  nav .name{font-weight:800; font-size:16px; color:var(--ivory); letter-spacing:.01em;}
+  nav .tag{display:block; font-size:8.5px; letter-spacing:.1em; color:var(--gold); font-weight:700; margin-top:-2px;}
+  nav .cta{background:var(--gold); color:#0c0c0e; padding:9px 18px; border-radius:20px; font-size:12.5px; font-weight:800;}
+
+  /* ===== HERO ===== */
+  header.hero{text-align:center; padding:64px 22px 30px; position:relative; overflow:hidden;}
+  header.hero::before{
+    content:''; position:absolute; top:-120px; left:50%; transform:translateX(-50%);
+    width:500px; height:500px; background:radial-gradient(circle, rgba(200,155,60,0.12), transparent 70%);
+    pointer-events:none;
+  }
+  header.hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800;
+    letter-spacing:.08em; color:var(--gold); background:rgba(200,155,60,0.08);
+    border:1px solid var(--line); padding:7px 16px; border-radius:20px; margin-bottom:22px; position:relative;
+  }
+  header.hero h1{font-size:clamp(30px,6vw,50px); color:var(--ivory); max-width:780px; margin:0 auto 18px; line-height:1.4; position:relative;}
+  header.hero h1 span{color:var(--gold-light);}
+  header.hero p.sub{font-size:16px; color:var(--muted); max-width:560px; margin:0 auto 30px; position:relative;}
+  .hero-ctas{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; position:relative;}
+  .btn-gold{background:var(--gold); color:#0c0c0e; padding:16px 28px; border-radius:12px; font-weight:800; font-size:14.5px; box-shadow:var(--shadow);}
+  .btn-line{background:transparent; color:var(--ivory); border:1.5px solid var(--line); padding:16px 28px; border-radius:12px; font-weight:800; font-size:14.5px;}
+
+  .stat-row{display:flex; justify-content:center; gap:34px; flex-wrap:wrap; margin-top:50px; position:relative;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'Amiri',serif; font-size:26px; color:var(--gold-light); font-weight:700;}
+  .stat .l{font-size:11px; color:var(--muted); letter-spacing:.02em;}
+
+  /* ===== SECTION HEAD ===== */
+  .eyebrow2{
+    font-size:11.5px; letter-spacing:.08em; color:var(--gold); font-weight:800;
+    display:flex; align-items:center; gap:8px; justify-content:center; margin-bottom:10px;
+  }
+  .eyebrow2::before,.eyebrow2::after{content:''; width:18px; height:1.5px; background:var(--gold);}
+  h2.section-title{font-size:clamp(24px,4.5vw,34px); color:var(--ivory); text-align:center; margin-bottom:12px;}
+  p.section-sub{text-align:center; color:var(--muted); max-width:520px; margin:0 auto 46px; font-size:14.5px;}
+
+  /* ===== SERVICES ===== */
+  .svc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px;}
+  .svc-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px 24px;
+    position:relative; overflow:hidden;
+  }
+  .svc-card .top-row{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .svc-card .icon{
+    width:46px; height:46px; border-radius:12px; background:rgba(200,155,60,0.1); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:21px; flex-shrink:0;
+  }
+  .svc-card h3{font-family:'Tajawal',sans-serif; font-size:16.5px; font-weight:800; color:var(--gold-light);}
+  .svc-card ul{list-style:none; font-size:13px; color:var(--muted);}
+  .svc-card li{padding:5px 0; padding-right:16px; position:relative;}
+  .svc-card li::before{content:'—'; position:absolute; right:0; color:var(--gold); opacity:.6;}
+
+  /* ===== SHOWCASE (acrylic look) ===== */
+  .showcase-wrap{
+    background:linear-gradient(160deg,#151517,#0c0c0e); border:1px solid var(--line); border-radius:24px;
+    padding:40px 26px; text-align:center;
+  }
+  .showcase-tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; max-width:600px; margin:26px auto 0;}
+  .showcase-tiles div{
+    background:#0c0c0e; border:1px solid var(--line); border-radius:12px; padding:16px 8px;
+    font-size:11.5px; font-weight:700; color:var(--gold-light); display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .showcase-tiles div span.ic{font-size:20px;}
+
+  .gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:30px;}
+  .gallery-grid figure{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+  }
+  .gallery-grid img{width:100%; height:auto; display:block;}
+  .gallery-grid figcaption{padding:10px 14px; font-size:12px; color:var(--muted); font-weight:700;}
+
+  /* ===== PLANS ===== */
+  .plans-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px;}
+  .plan-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:30px 24px;
+    display:flex; flex-direction:column;
+  }
+  .plan-card.featured{border-color:var(--gold); background:linear-gradient(165deg,#1c1a12,#17171a); position:relative;}
+  .plan-card.featured::before{
+    content:'الأكثر طلباً'; position:absolute; top:-12px; right:24px; background:var(--gold); color:#0c0c0e;
+    font-size:10.5px; font-weight:800; padding:4px 12px; border-radius:20px;
+  }
+  .plan-card h3{font-size:19px; color:var(--ivory); margin-bottom:6px;}
+  .plan-card .price-note{font-size:12px; color:var(--gold); font-weight:700; margin-bottom:18px;}
+  .plan-card ul{list-style:none; flex:1; margin-bottom:20px;}
+  .plan-card li{font-size:13px; color:var(--muted); padding:6px 0; padding-right:20px; position:relative;}
+  .plan-card li::before{content:'✓'; position:absolute; right:0; color:var(--gold);}
+  .plan-card a{text-align:center; padding:12px; border-radius:10px; font-weight:800; font-size:13px; background:rgba(200,155,60,0.1); color:var(--gold-light); border:1px solid var(--line);}
+  .plan-card.featured a{background:var(--gold); color:#0c0c0e;}
+
+  /* ===== VISION ===== */
+  .vision-tags{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
+  .vision-tags span{
+    background:var(--panel); border:1px dashed var(--line); color:var(--muted);
+    font-size:12.5px; padding:9px 16px; border-radius:20px; display:flex; align-items:center; gap:6px;
+  }
+  .vision-tags span .soon{color:var(--gold); font-size:10px; font-weight:800;}
+
+  /* ===== CTA ===== */
+  .final-cta{text-align:center;}
+  .final-cta h2{font-size:clamp(24px,5vw,36px); color:var(--ivory); margin-bottom:14px;}
+  .final-cta p{color:var(--muted); margin-bottom:28px; font-size:15px;}
+
+  footer{text-align:center; padding:30px 22px 50px; color:var(--muted); font-size:12px; border-top:1px solid var(--line);}
+  footer .fbrand{color:var(--gold-light); font-weight:800;}
+
+  @media (max-width:640px){ section{padding:56px 18px;} }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="inner">
+      <div class="brand">
+        <div class="mark">M</div>
+        <div>
+          <div class="name">MenuGo</div>
+          <span class="tag">DIGITAL BUSINESS SOLUTIONS</span>
+        </div>
+      </div>
+      <a class="cta" href="#contact">تواصل معانا</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow" id="heroEyebrow">🇲🇦 حلول رقمية متكاملة للمقاولات المغربية</div>
+    <h1 id="heroTitle">ماشي غير QR Menu — <span>هوية رقمية كاملة</span> للمقاولة ديالك</h1>
+    <p class="sub" id="heroSub">من المنيو الرقمي حتى الموقع الإلكتروني، اللوحة الأكريليك، وكارت الفيزيت — MenuGo كيجمع ليك كل شي فمكان واحد.</p>
+    <div class="hero-ctas">
+      <a class="btn-gold" href="#contact">اطلب عرض السعر</a>
+      <a class="btn-line" href="#services">شوف الخدمات</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="n">6+</div><div class="l">فئات خدمات</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">تصميم مخصص</div></div>
+      <div class="stat"><div class="n">24h</div><div class="l">بداية الإنجاز</div></div>
+    </div>
+  </header>
+
+  <div class="zellige-line"></div>
+
+  <section id="services">
+    <p class="eyebrow2">خدماتنا</p>
+    <h2 class="section-title">كل ما يحتاجه محلك، من مكان واحد</h2>
+    <p class="section-sub">مطاعم، عيادات، صالونات، محلات تجارية — نفس الجودة، هوية مخصصة لكل نشاط</p>
+
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">📱</div><h3>منيو رقمي QR</h3></div>
+        <ul>
+          <li>تحديث بلا إعادة طباعة</li>
+          <li>صور الأكلات والتصنيفات</li>
+          <li>عروض خاصة + زر واتساب واتصال</li>
+          <li>Google Maps وروابط السوشيال ميديا</li>
+          <li>تقييمات Google</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">🎁</div><h3>Business Kit</h3></div>
+        <ul>
+          <li>Business Cards + Employee Badges</li>
+          <li>Acrylic QR Stand + Table Numbers</li>
+          <li>Acrylic Signage + ساعات العمل</li>
+          <li>Stickers + Flyers + Roll-up Banner</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">🌐</div><h3>مواقع إلكترونية</h3></div>
+        <ul>
+          <li>موقع تعريفي للشركة</li>
+          <li>موقع خاص بالمطعم</li>
+          <li>صفحة هبوط (Landing Page)</li>
+          <li>دومين خاص + استضافة</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">🎨</div><h3>التصميم والهوية</h3></div>
+        <ul>
+          <li>تصميم Logo وهوية بصرية كاملة</li>
+          <li>تصميم منيو احترافي للطباعة</li>
+          <li>بوستات وستوري السوشيال ميديا</li>
+          <li>تصميم العروض</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">⚙️</div><h3>لوحة التحكم</h3></div>
+        <ul>
+          <li>إضافة وحذف المنتجات، رفع الصور</li>
+          <li>تغيير الأسعار وإدارة الفئات</li>
+          <li>إحصائيات الزيارات</li>
+          <li>كلشي من التيليفون، بلا كمبيوتر</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <div class="top-row"><div class="icon">🖨️</div><h3>الطباعة</h3></div>
+        <ul>
+          <li>طباعة المنيو واللافتات</li>
+          <li>طباعة الملصقات والكروت</li>
+          <li>طباعة البنرات</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow2">Business Kit</p>
+    <h2 class="section-title">لوحة QR واحدة، كل الروابط ديالك</h2>
+    <p class="section-sub">تصميم أسود وذهبي فاخر — أكريليك مقاوم للماء والخدوش، جاهز للطاولة أو الفاترينة</p>
+    <div class="showcase-wrap">
+      <div class="showcase-tiles">
+        <div><span class="ic">📋</span>المنيو الرقمي</div>
+        <div><span class="ic">💬</span>واتساب</div>
+        <div><span class="ic">📷</span>إنستغرام</div>
+        <div><span class="ic">📍</span>Google Maps</div>
+        <div><span class="ic">⭐</span>Google Reviews</div>
+        <div><span class="ic">📶</span>Wi-Fi</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <p class="eyebrow2">شوف بعينيك</p>
+    <h2 class="section-title">نماذج من الإنجازات</h2>
+    <p class="section-sub">لوحات أكريليك، كروت فيزيت، وهوية بصرية فاخرة</p>
+    <div class="gallery-grid" id="galleryGrid">
+      <figure>
+        <img src="showcase-stand.png" alt="لوحة QR أكريليك">
+        <figcaption>لوحة QR أكريليك — أسود وذهبي</figcaption>
+      </figure>
+      <figure>
+        <img src="showcase-kit.png" alt="Business Kit كامل">
+        <figcaption>Business Kit — كروت، بادجات، تصميم كامل</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="plans">
+    <p class="eyebrow2">الباقات</p>
+    <h2 class="section-title">اختار الباقة اللي تناسب المقاولة ديالك</h2>
+    <p class="section-sub">الأثمنة كتختلف حسب الحجم والخدمات المطلوبة — تواصل معانا لعرض سعر مخصص</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <h3>Basic</h3>
+        <div class="price-note">للانطلاقة الرقمية</div>
+        <ul>
+          <li>منيو رقمي QR</li>
+          <li>لوحة تحكم بسيطة</li>
+          <li>زر واتساب واتصال</li>
+          <li>QR واحد للطباعة</li>
+        </ul>
+        <a href="#contact">اطلب عرض السعر</a>
+      </div>
+      <div class="plan-card featured">
+        <h3>Standard</h3>
+        <div class="price-note">الأكثر توازناً</div>
+        <ul>
+          <li>كل خدمات Basic</li>
+          <li>Business Kit (لوحة أكريليك + كروت)</li>
+          <li>تصميم هوية بصرية بسيطة</li>
+          <li>إحصائيات الزيارات</li>
+        </ul>
+        <a href="#contact">اطلب عرض السعر</a>
+      </div>
+      <div class="plan-card">
+        <h3>Premium</h3>
+        <div class="price-note">حل شامل ومتكامل</div>
+        <ul>
+          <li>كل خدمات Standard</li>
+          <li>موقع إلكتروني خاص + دومين</li>
+          <li>هوية بصرية كاملة + تصميم سوشيال ميديا</li>
+          <li>دعم وتحديثات دورية</li>
+        </ul>
+        <a href="#contact">اطلب عرض السعر</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="vision">
+    <p class="eyebrow2">الرؤية المستقبلية</p>
+    <h2 class="section-title">خدمات جايين قريبا</h2>
+    <p class="section-sub">MenuGo فطريقها تولي منصة حلول رقمية شاملة — هادو بعض الخدمات اللي كنخدمو عليهم</p>
+    <div class="vision-tags">
+      <span>📅 حجز الطاولات <b class="soon">قريباً</b></span>
+      <span>🛵 طلب الطعام أونلاين <b class="soon">قريباً</b></span>
+      <span>🎁 برنامج ولاء ونقط <b class="soon">قريباً</b></span>
+      <span>🎟️ كوبونات وبطاقات هدايا <b class="soon">قريباً</b></span>
+      <span>📡 بطاقات NFC ذكية <b class="soon">قريباً</b></span>
+      <span>🌍 دعم عدة لغات وعملات <b class="soon">قريباً</b></span>
+      <span>🏢 نظام Franchise و White Label <b class="soon">قريباً</b></span>
+      <span>💇 منيو للصالونات والعيادات والجيم <b class="soon">قريباً</b></span>
+    </div>
+  </section>
+
+  <section id="contact" class="final-cta">
+    <p class="eyebrow2">جاهز تبدا؟</p>
+    <h2>خلي المقاولة ديالك تدخل للعصر الرقمي</h2>
+    <p>راسلنا دابا ونبداو نصاوبو ليك الهوية الرقمية الكاملة</p>
+    <div class="hero-ctas">
+      <a class="btn-gold" id="ctaWhatsapp" href="https://wa.me/212608182302" target="_blank">💬 راسلنا فواتساب</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fbrand">MenuGo</span> Digital Business Solutions — شريكك فنجاح أعمالك 🇲🇦
+  </footer>
+
+  <!-- ===== Firebase (Firestore) — لتحميل التعديلات ديال site-admin.html ===== -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDN00X10I8hdJY8iKV2kdu5CcUbxMrqwLU",
+      authDomain: "menugo-e2edf.firebaseapp.com",
+      projectId: "menugo-e2edf",
+      storageBucket: "menugo-e2edf.firebasestorage.app",
+      messagingSenderId: "1051576121364",
+      appId: "1:1051576121364:web:3f0a5b34dfadb75c144f01",
+      measurementId: "G-XN75JDJ0E4"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    (async function loadSiteContent(){
+      try{
+        const allSnap = await db.collection('site').get({ source: 'server' });
+        let data = null;
+        allSnap.forEach(d=>{ if(d.id === 'landing') data = d.data(); });
+        if(!data) return;
+
+        if(data.heroEyebrow) document.getElementById('heroEyebrow').textContent = data.heroEyebrow;
+        if(data.heroTitle) document.getElementById('heroTitle').innerHTML = data.heroTitle;
+        if(data.heroSub) document.getElementById('heroSub').textContent = data.heroSub;
+        if(data.whatsapp){
+          const digits = data.whatsapp.replace(/\D/g,'');
+          document.querySelectorAll('#ctaWhatsapp, nav .cta').forEach(a=>{
+            if(a.id === 'ctaWhatsapp') a.href = 'https://wa.me/' + digits;
+          });
+        }
+        if(Array.isArray(data.gallery) && data.gallery.length){
+          const grid = document.getElementById('galleryGrid');
+          grid.innerHTML = data.gallery.map(g => `
+            <figure>
+              <img src="${g.url}" alt="${g.caption || ''}">
+              <figcaption>${g.caption || ''}</figcaption>
+            </figure>`).join('');
+        }
+      }catch(e){ /* كنبقاو على المحتوى الافتراضي إلا تعذر الاتصال */ }
+    })();
+  </script>
+</body>
+</html>

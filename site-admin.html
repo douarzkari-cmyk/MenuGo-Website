@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>تحكم الموقع | MenuGo</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDN00X10I8hdJY8iKV2kdu5CcUbxMrqwLU",
+    authDomain: "menugo-e2edf.firebaseapp.com",
+    projectId: "menugo-e2edf",
+    storageBucket: "menugo-e2edf.firebasestorage.app",
+    messagingSenderId: "1051576121364",
+    appId: "1:1051576121364:web:3f0a5b34dfadb75c144f01",
+    measurementId: "G-XN75JDJ0E4"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+<style>
+  :root{
+    --bg:#0d1220; --panel:#141b2e; --panel-2:#1b2540; --line:rgba(255,255,255,0.08);
+    --text:#eef1f8; --muted:#8b93ab; --accent:#c89b3c; --accent-dim:rgba(200,155,60,0.14);
+    --warn:#e5734a; --radius:16px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:'Tajawal',sans-serif; min-height:100vh; padding:20px 16px 60px;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  input,textarea{font-family:inherit;}
+
+  .top{margin-bottom:20px;}
+  .top h1{font-size:22px; margin-bottom:4px;}
+  .top p{color:var(--muted); font-size:13px;}
+
+  .gate{max-width:340px; margin:60px auto; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:28px 22px; text-align:center;}
+  .gate .mark{width:52px; height:52px; border-radius:14px; background:var(--accent-dim); color:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:24px; margin:0 auto 14px;}
+  .gate input{width:100%; padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--panel-2); color:var(--text); font-size:16px; text-align:center; letter-spacing:3px; margin-bottom:10px;}
+  .gate button{width:100%; padding:12px; border-radius:10px; background:var(--accent); color:#221a0a; font-weight:800;}
+  .gate-err{color:var(--warn); font-size:12px; margin-top:8px; display:none;}
+
+  #app{display:none;}
+  #app.show{display:block;}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin-bottom:16px;}
+  .card h2{font-size:15.5px; margin-bottom:14px; color:var(--accent);}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:12.5px; color:var(--muted); margin-bottom:5px; font-weight:700;}
+  .field input, .field textarea{
+    width:100%; padding:11px 13px; border-radius:10px; border:1px solid var(--line);
+    background:var(--panel-2); color:var(--text); font-size:14px;
+  }
+  .field textarea{min-height:70px; resize:vertical;}
+  .hint{font-size:11px; color:var(--muted); margin-top:4px;}
+
+  .gallery-item{background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:12px; margin-bottom:10px; position:relative;}
+  .gallery-item .rm{position:absolute; top:8px; left:8px; background:rgba(229,115,74,0.15); color:var(--warn); width:26px; height:26px; border-radius:50%; font-weight:800;}
+  .add-gallery{width:100%; padding:12px; border-radius:10px; background:var(--panel-2); color:var(--accent); border:1px dashed var(--line); font-weight:800; font-size:13px;}
+
+  .save-btn{width:100%; background:var(--accent); color:#221a0a; font-weight:800; padding:15px; border-radius:12px; font-size:15px; margin-top:6px;}
+  .save-status{text-align:center; font-size:12.5px; color:var(--accent); margin-top:10px; min-height:16px;}
+</style>
+</head>
+<body>
+
+  <div class="gate" id="gate">
+    <div class="mark">M</div>
+    <h2 style="margin-bottom:6px;">تحكم الموقع</h2>
+    <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">تعديل محتوى موقع MenuGo الترويجي</p>
+    <input type="password" id="ownerPin" inputmode="numeric" maxlength="6" placeholder="الكود السري">
+    <button onclick="checkOwnerPin()">دخول</button>
+    <div class="gate-err" id="gateErr">الكود خاطئ</div>
+  </div>
+
+  <div id="app">
+    <div class="top">
+      <h1>🖋️ تحكم الموقع</h1>
+      <p>بدّل النص، الصور، ورقم التواصل فأي وقت</p>
+    </div>
+
+    <div class="card">
+      <h2>القسم الرئيسي (Hero)</h2>
+      <div class="field">
+        <label>الجملة الصغيرة فوق (Eyebrow)</label>
+        <input type="text" id="f_eyebrow" placeholder="🇲🇦 حلول رقمية متكاملة للمقاولات المغربية">
+      </div>
+      <div class="field">
+        <label>العنوان الرئيسي</label>
+        <textarea id="f_title" placeholder="ماشي غير QR Menu — هوية رقمية كاملة للمقاولة ديالك"></textarea>
+        <div class="hint">تقدر تستعمل &lt;span&gt;كلمة&lt;/span&gt; باش تلون جزء من الجملة بالذهبي</div>
+      </div>
+      <div class="field">
+        <label>الجملة التوضيحية تحت العنوان</label>
+        <textarea id="f_sub" placeholder="من المنيو الرقمي حتى الموقع الإلكتروني..."></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>التواصل</h2>
+      <div class="field">
+        <label>رقم واتساب (بلا صفر دولي، مثلاً 212612345678)</label>
+        <input type="text" id="f_whatsapp" placeholder="212612345678">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>معرض الصور</h2>
+      <div id="galleryList"></div>
+      <button class="add-gallery" onclick="addGalleryItem()">+ زيد صورة</button>
+      <p class="hint" style="margin-top:10px;">حط رابط الصورة (من imgbb.com مثلاً — نفس الطريقة اللي كتستعملها فـ admin.html ديال الكلاينات) والتسمية.</p>
+    </div>
+
+    <button class="save-btn" onclick="saveAll()">💾 حفظ التغييرات</button>
+    <div class="save-status" id="saveStatus"></div>
+  </div>
+
+<script>
+  const OWNER_PIN = '9090';
+  let galleryItems = [];
+
+  function checkOwnerPin(){
+    const val = document.getElementById('ownerPin').value;
+    if(val === OWNER_PIN){
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('app').classList.add('show');
+      init();
+    } else {
+      document.getElementById('gateErr').style.display = 'block';
+    }
+  }
+  document.getElementById('ownerPin').addEventListener('keydown', e=>{ if(e.key==='Enter') checkOwnerPin(); });
+
+  async function init(){
+    try{
+      const allSnap = await db.collection('site').get({ source: 'server' });
+      let data = null;
+      allSnap.forEach(d=>{ if(d.id === 'landing') data = d.data(); });
+      if(data){
+        document.getElementById('f_eyebrow').value = data.heroEyebrow || '';
+        document.getElementById('f_title').value = data.heroTitle || '';
+        document.getElementById('f_sub').value = data.heroSub || '';
+        document.getElementById('f_whatsapp').value = data.whatsapp || '';
+        galleryItems = Array.isArray(data.gallery) ? data.gallery : [];
+      }
+    }catch(e){ console.error(e); }
+    renderGallery();
+  }
+
+  function renderGallery(){
+    const wrap = document.getElementById('galleryList');
+    if(!galleryItems.length){
+      wrap.innerHTML = '<p class="hint">مازال ما زدتي حتى صورة.</p>';
+      return;
+    }
+    wrap.innerHTML = galleryItems.map((g,i) => `
+      <div class="gallery-item">
+        <button class="rm" onclick="removeGalleryItem(${i})">✕</button>
+        <div class="field">
+          <label>رابط الصورة</label>
+          <input type="text" value="${(g.url||'').replace(/"/g,'&quot;')}" oninput="galleryItems[${i}].url=this.value">
+        </div>
+        <div class="field">
+          <label>التسمية</label>
+          <input type="text" value="${(g.caption||'').replace(/"/g,'&quot;')}" oninput="galleryItems[${i}].caption=this.value">
+        </div>
+      </div>`).join('');
+  }
+
+  function addGalleryItem(){
+    galleryItems.push({url:'', caption:''});
+    renderGallery();
+  }
+  function removeGalleryItem(i){
+    galleryItems.splice(i,1);
+    renderGallery();
+  }
+
+  async function saveAll(){
+    const statusEl = document.getElementById('saveStatus');
+    statusEl.textContent = 'كنحفظو...';
+    const payload = {
+      heroEyebrow: document.getElementById('f_eyebrow').value,
+      heroTitle: document.getElementById('f_title').value,
+      heroSub: document.getElementById('f_sub').value,
+      whatsapp: document.getElementById('f_whatsapp').value,
+      gallery: galleryItems.filter(g => g.url)
+    };
+    try{
+      await db.collection('site').doc('landing').set(payload, { merge: true });
+      statusEl.textContent = '✓ تم الحفظ — التغييرات بانو فالموقع';
+    }catch(e){
+      console.error(e);
+      statusEl.textContent = '✕ خطأ فالحفظ، تأكد من الاتصال بالأنترنت';
+    }
+    setTimeout(()=>{ statusEl.textContent=''; }, 4000);
+  }
+</script>
+</body>
+</html>
